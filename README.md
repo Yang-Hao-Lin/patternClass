@@ -13,4 +13,5 @@
 ### [*week2*](week2.py) 朴素贝叶斯预测[泰坦尼克号问题](https://www.kaggle.com/c/titanic)
 ![Titanic](output/week2/kaggle_Titanic.jpg)  
 
-### [*week3*](wee3.py) PCA加朴素贝叶斯处理[手写字数据集](https://www.kaggle.com/c/digit-recognizer)
+### [*week3*](wee3.py) PCA加贝叶斯以及PCA加最小二乘处理[手写字数据集](https://www.kaggle.com/c/digit-recognizer)  
+测试集上正确率分别为11% 和23%，比较拉跨，就不放图了
