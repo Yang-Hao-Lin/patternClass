@@ -155,7 +155,7 @@ class PCANBDigitalNum:
             cv.waitKey(0)
             cv.destroyAllWindows()
 
-class PCALestSquareDigitalNum:
+class PCALeastSquareDigitalNum:
     def __init__(self, dataset_root='./dataset/week3', pca_length = None, cls_num=10):
         assert osp.exists(dataset_root)
         self.dataset_root = dataset_root
@@ -274,5 +274,5 @@ class PCALestSquareDigitalNum:
 if __name__ == '__main__':
     # pca_nb = PCANBDigitalNum()
     # pca_nb.test()
-    pca_ls = PCALestSquareDigitalNum()
+    pca_ls = PCALeastSquareDigitalNum()
     pca_ls.test()
