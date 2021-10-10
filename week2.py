@@ -6,7 +6,7 @@ import numpy as np
 # 朴素贝叶斯处理泰坦尼克号数据集
 # 特征向量选取('Pclass','Sex‘， ’Age‘, 'SibSp', 'Parch, 'Embarked')
 # Age 和 Embarked需要进行数据清洗。只有age是连续量，需要先离散化
-# 训练集的统计信息都被存入NBTitannic的P_Y和P_X_Y属性中
+# 训练集的统计信息都被存入NBTitannic类的P_Y和P_X_Y属性中
 
 dataset_root = 'dataset/week2'
 
@@ -18,8 +18,8 @@ class NBTitanic:
         self.age_stage = (6, 12, 17, 45, 69, 300)
 
         self.test_start = 892
-        self.train_Larray = self.normalize(self.clean(self.train_csv), istrain=True)
-        self.test_Larray = self.normalize(self.clean(self.test_csv))
+        self.train_Larray = self.std(self.clean(self.train_csv), istrain=True)
+        self.test_Larray = self.std(self.clean(self.test_csv))
         self.feature_key = ('Pclass', 'Sex', 'Age', 'Sibsp', 'Parch', 'Embarked')
         self.pcdStatisticsInfo()
         print('')
@@ -55,7 +55,8 @@ class NBTitanic:
                 data_frame.loc[index, 'Embarked'] = random.choice(['S', 'C', 'Q'])
         return data_frame
 
-    def normalize(self, data_frame, istrain=False):
+    def std(self, data_frame, istrain=False):
+        # 将特征标准化为从1开始正整数
         farray = []
 
         for index, row in data_frame.iterrows():
