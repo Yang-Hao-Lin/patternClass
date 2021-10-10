@@ -78,9 +78,8 @@ if __name__ == '__main__':
     plt.plot(x, y, 'b--')
     plt.xlabel('FPR')
     plt.ylabel('TPR')
-    plt.show()
     path = './output/week0.5'
     if not os.path.exists(path):
         os.makedirs(path)
     plt.savefig(os.path.join(path, 'ROC_curve.jpg'))
-np.version
+    plt.show()
