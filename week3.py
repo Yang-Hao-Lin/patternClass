@@ -1,10 +1,11 @@
-# PCA主成分分析加朴素贝叶斯判断手写数字
+
 import numpy as np
 from tqdm import tqdm
 import os.path as osp
 import os
 import pandas as pd
 
+# PCA主成分分析加朴素贝叶斯判断手写数字
 class PCANBDigitalNum:
     def __init__(self, dataset_root='./dataset/week3', pca_length = 20, cls_num=10):
         assert osp.exists(dataset_root)
@@ -155,6 +156,7 @@ class PCANBDigitalNum:
             cv.waitKey(0)
             cv.destroyAllWindows()
 
+# PCA主成分分析加最小二乘判断手写数字
 class PCALeastSquareDigitalNum:
     def __init__(self, dataset_root='./dataset/week3', pca_length = None, cls_num=10):
         assert osp.exists(dataset_root)
@@ -239,12 +241,8 @@ class PCALeastSquareDigitalNum:
         X = feMatrix.transpose()
         X_ = np.concatenate([np.ones([n, 1], dtype=X.dtype), X], 1)
         X_T_ = np.transpose(X_)
-
-        #               (M+1, M+1)      (M+1, N)  (N, 1) -> (M+1, 1)
         C_ = np.linalg.inv(X_T_ @ X_) @ X_T_ @ label[:,np.newaxis]
-        # (1)
         B_ = C_[0]
-        # (M, 1)
         A_ = C_[1:]
 
         return A_, B_
