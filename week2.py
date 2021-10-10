@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 # 朴素贝叶斯处理泰坦尼克号数据集
 # 特征向量选取('Pclass','Sex‘， ’Age‘, 'SibSp', 'Parch, 'Embarked')
-# Age 和 Embarked需要进行数据清洗。只有age是连续量，需要先离散化
+# Age 和 Embarked需要进行数据清洗。只有age是连续量，为了统一处理，直接离散化。
 # 训练集的统计信息都被存入NBTitannic类的P_Y和P_X_Y属性中
 
 dataset_root = 'dataset/week2'
@@ -159,7 +159,5 @@ class NBTitanic:
         csv.to_csv(osp.join(save_root, 'submission.csv'), index=False)
 
 if __name__ == '__main__':
-    nb = NBTitanic(dataset_root)
-    nb()
-
-
+    nb = NBTitanic(dataset_root) # 进行初始化并完成训练
+    nb() # 预测结果并输出
