@@ -1,5 +1,6 @@
 import numpy as np
 from util.optim import *
+mode = 'direct'
 
 # 最小二乘法
 
@@ -20,7 +21,7 @@ class labelGenerator:
 
     def pred(self, ip):
         "ip: np array of (B,self.M)"
-        return (ip**10) @ self.A + self.B
+        return (ip) @ self.A + self.B
 
 
 def grad_linear(Y, X, B):
@@ -52,7 +53,6 @@ if __name__ == '__main__':
     # (N,M) -> (N,M+1)
     X_ = np.concatenate([np.ones([N, 1], dtype=X.dtype), X], axis=1)
     modes = ('direct', 'grad', 'newton')
-    mode = 'direct'
     A_ = None
     B_ = None
     if mode == modes[0]:
@@ -114,7 +114,7 @@ if __name__ == '__main__':
         ture = gen.pred(ip_test)
         pred = ip_test @ A_ + B_
 
-        print(f'test{i}:\n\tpred\t{pred[0][0]}\n\tture\t{pred[0][0]}')
+        print(f'test{i}:\n\tpred\t{pred[0][0]}\n\tture\t{ture[0][0]}')
 
 
 
