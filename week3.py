@@ -107,8 +107,8 @@ class PCANBDigitalNum:
         prior /= float(len(label))
         return mean_matrix, var_matrix, prior.tolist()
 
-    def independentMultiGaussian(self, mean, co_var, ip_vector):
-        '''多元的独立同分布高斯密度log型
+    def loglikehood(self, mean, co_var, ip_vector):
+        '''求符合高斯分布的似然，为防止下溢出，使用log型的
         Arg:
             mean\ip_vector: numpy array (N,)
             co_var: numpy array (N,N)
@@ -135,7 +135,7 @@ class PCANBDigitalNum:
             for c in range(self.cls_num):
                 vars = self.var_matrix[c]
                 means = self.mean_matrix[c]
-                like_hood = self.independentMultiGaussian(means, vars, vector)
+                like_hood = self.loglikehood(means, vars, vector)
                 like_hoods.append(like_hood)
             like_hoods = np.array(like_hoods)
             # prior = np.log(np.array(self.prior))
